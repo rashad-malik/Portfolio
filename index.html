@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minimalist Portfolio – Rashad Malik</title>
+    <title>Portfolio – Rashad Malik</title>
 
     <!-- Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,7 @@
       /* ------------ CSS RESET ------------ */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { opacity: 0; animation: pageFade 0.9s ease-out forwards; }
-      body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: #111; line-height: 1.6; background: #fff; }
+      body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: #111; line-height: 1.6; background: #f9f7f3;  }
       img { max-width: 100%; display: block; }
       a { color: inherit; text-decoration: none; }
 
@@ -29,7 +29,7 @@
       .container { width: var(--container); margin-inline: auto; }
 
       /* ------------ Navigation ------------ */
-      nav { position: fixed; top: 0; left: 0; width: 100%; background: #fff; border-bottom: 1px solid #eee; z-index: 1000; }
+      nav { position: fixed; top: 0; left: 0; width: 100%; background: #f9f7f3; border-bottom: 1px solid #eee; z-index: 1000;  border-bottom: 1px solid #eee; z-index: 1000; }
       .nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; }
       nav .brand { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.02em; }
       nav ul { list-style: none; display: flex; gap: 2.5rem; }
@@ -78,10 +78,10 @@
     <!-- ---------- Navigation ---------- -->
     <nav>
       <div class="container nav-inner">
-        <div class="brand">_rashadmalik</div>
+        <a href="#home" class="brand">_rashadmalik</a>
         <ul>
           <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="#projects">Projects</a></li>
         </ul>
       </div>

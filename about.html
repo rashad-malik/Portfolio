@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About – Rashad Malik</title>
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      /* ========== Base ========== */
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{opacity:0;animation:pageFade .9s ease-out forwards}
+      body{font-family:"Inter","Helvetica Neue",Arial,sans-serif;color:#111;line-height:1.6;background:#f9f7f3}
+      a{color:inherit;text-decoration:none}
+      img{max-width:100%;display:block;border-radius:10px}
+      :root{--accent:#0f766e;--container:min(90%,1000px)}
+      @keyframes pageFade{to{opacity:1}}
+      .container{width:var(--container);margin-inline:auto}
+
+      /* ========== Nav ========== */
+      nav{position:fixed;top:0;left:0;width:100%;background:#f9f7f3;border-bottom:1px solid #eee;z-index:1000}
+      .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+      .brand{font-weight:600;font-size:.9rem;letter-spacing:.02em}
+      nav ul{list-style:none;display:flex;gap:2.5rem}
+      nav li a{position:relative;font-size:.9rem}
+      nav li a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--accent);transform:scaleX(0);opacity:0;transition:.25s}
+      nav li a:hover::after{transform:scaleX(1);opacity:.4}
+      nav li a.active::after{height:2px;transform:scaleX(1);opacity:1}
+
+      /* ========== Hero ========== */
+      header.hero{padding:140px 0 100px;text-align:center}
+      header.hero h1{font-size:clamp(2.4rem,6vw+1rem,4rem);font-weight:800}
+
+      /* ========== About grid ========== */
+      .about-grid{display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start}
+      .about-text p{margin-bottom:1.3rem;max-width:65ch}
+      .skills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+      .skills span{font-size:.8rem;background:#e7eceb;color:#0c5750;padding:4px 10px;border-radius:999px}
+
+      /* Timeline */
+      .timeline{margin-top:3rem;border-left:2px solid #ddd;padding-left:1.5rem}
+      .timeline-item{margin-bottom:2rem;position:relative}
+      .timeline-item::before{content:"";position:absolute;left:-11px;top:.35rem;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+      .timeline-item h4{font-weight:600;margin-bottom:.2rem}
+      .timeline-item time{font-size:.8rem;color:#555}
+
+      /* ========== Footer ========== */
+      footer{border-top:1px solid #eee;padding:80px 0 100px;margin-top:120px}
+      .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+      .footer-left p{font-size:.85rem;white-space:nowrap}
+      .footer-right ul{list-style:none;display:flex;gap:1rem}
+      .footer-right a{font-size:.85rem;transition:color .2s;text-decoration:underline transparent}
+      .footer-right a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+
+      /* Responsive */
+      @media(max-width:800px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
+      @media(max-width:600px){nav ul{gap:1.5rem}.nav-inner{height:64px}header.hero{padding:120px 0 80px}}
+    </style>
+  </head>
+  <body>
+    <!-- ========= NAV ========= -->
+    <nav>
+      <div class="container nav-inner">
+        <a href="index.html#home" class="brand">_rashadmalik</a>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="#top" class="active">About</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ========= HERO ========= -->
+    <header class="hero" id="top">
+      <div class="container">
+        <h1>About Me</h1>
+      </div>
+    </header>
+
+    <!-- ========= ABOUT GRID ========= -->
+    <section class="container about-grid">
+      <img src="https://placehold.co/280x320" alt="Portrait of Rashad Malik" />
+      <div class="about-text">
+        <p>I’m Rashad Malik, a London‑based data scientist with a background in mechanical engineering and seven years delivering analytics and SAP projects for FTSE‑100 clients. I love designing pipelines that turn chaotic enterprise data into clear, actionable insights.</p>
+        <p>At PwC I catalogued 800+ integrations and coordinated 1,400 transports for a global S/4HANA rollout, then pivoted to drive data‑centric asset‑management demos for energy utilities. Earlier at Bluefin I led legacy‑data migration for one of the UK’s first green‑field S/4HANA projects. My journey began on the turbine decks of RWE’s Pembroke power station, where I learned how data and engineering decisions intersect in the real world.</p>
+
+        <h3>Core Skills</h3>
+        <div class="skills">
+          <span>Python</span><span>SQL</span><span>Pandas</span><span>PySpark</span><span>Tableau</span><span>Kafka</span><span>Docker</span><span>Git</span><span>Data Visualisation</span><span>Statistical Modelling</span><span>SAP S/4HANA</span><span>Stakeholder Engagement</span>
+        </div>
+
+        <h3 style="margin-top:2.5rem">Experience</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>SAP Consultant, Senior Associate – PwC</h4>
+            <time>May 2018 – Aug 2023</time>
+            <p>Owned data‑analytics workstreams, built an 800‑line integration catalogue and managed 1.4k transports during a global S/4HANA cut‑over. Ran monthly demos of SAP Intelligent Asset Management for energy clients.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>S/4HANA Consultant – Bluefin Solutions</h4>
+            <time>Sep 2016 – May 2018</time>
+            <p>Led data migration for a green‑field S/4HANA implementation; delivered 60+ BEx queries and 50+ Analysis for Office reports for a BPC forecasting rollout.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Industrial Placement Mechanical Engineer – RWE npower</h4>
+            <time>Oct 2012 – Sep 2013</time>
+            <p>Supported maintenance projects at the 2 GW Pembroke gas‑fired power station, combining on‑site inspections with data analysis.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:2.5rem">Education & Certifications</h3>
+        <div class="timeline" style="border:none;padding-left:0">
+          <div class="timeline-item" style="border:none;">
+            <h4>MSc Data Science & Artificial Intelligence – Queen Mary University of London</h4>
+            <time>2024 – 2025 (expected)</time>
+          </div>
+          <div class="timeline-item" style="border:none;">
+            <h4>MSc Management – Warwick Business School</h4>
+            <time>2014 – 2015</time>
+          </div>
+          <div class="timeline-item" style="border:none;">
+            <h4>BEng Mechanical Engineering with Industry – University of Leicester</h4>
+            <time>2010 – 2014</time>
+          </div>
+          <div class="timeline-item" style="border:none;">
+            <h4>Data Analyst in Python – Dataquest</h4>
+            <time>2023</time>
+          </div>
+          <div class="timeline-item" style="border:none;">
+            <h4>Data Visualisation with Tableau – Dataquest</h4>
+            <time>2023</time>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= FOOTER ========= -->
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-left"><p>© 2025 Rashad Malik</p></div>
+        <div class="footer-right">
+          <ul>
+            <li><a href="https://github.com/rashad-malik" target="_blank">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rashadmalik/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://x.com/rashadmalik_" target="_blank">X</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
