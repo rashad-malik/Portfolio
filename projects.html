@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects – Rashad Malik</title>
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      /* ---- Base ---- */
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{opacity:0;animation:fade .9s ease-out forwards}
+      body{font-family:"Inter","Helvetica Neue",Arial,sans-serif;color:#111;line-height:1.6;background:#f9f7f3}
+      a{text-decoration:none;color:inherit}
+      img{max-width:100%;display:block;border-radius:12px}
+      :root{--accent:#0f766e;--container:min(90%,1000px)}
+      @keyframes fade{to{opacity:1}}
+      .container{width:var(--container);margin-inline:auto}
+
+      /* ---- Nav ---- */
+      nav{position:fixed;top:0;left:0;width:100%;background:#f9f7f3;border-bottom:1px solid #eee;z-index:1000}
+      .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+      .brand{font-weight:600;font-size:.9rem;letter-spacing:.02em}
+      nav ul{list-style:none;display:flex;gap:2.5rem}
+      nav li a{position:relative;font-size:.9rem}
+      nav li a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--accent);transform:scaleX(0);opacity:0;transition:.25s}
+      nav li a:hover::after{transform:scaleX(1);opacity:.4}
+      nav li a.active::after{height:2px;transform:scaleX(1);opacity:1}
+
+      /* ---- Hero ---- */
+      header.hero{padding:140px 0 80px;text-align:center}
+      header.hero h1{font-size:clamp(2.4rem,6vw+1rem,4rem);font-weight:800}
+
+      /* ---- Project grid ---- */
+      .projects-wrap{display:grid;gap:3rem 2rem;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));padding-bottom:120px}
+      .card{background:#fff;border:1px solid #e7e5e4;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.04);display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
+      .card:hover{transform:translateY(-4px);box-shadow:0 6px 14px rgba(0,0,0,.08)}
+      .card img{border-radius:12px 12px 0 0;height:180px;object-fit:cover}
+      .card-body{padding:1.2rem;display:flex;flex-direction:column;gap:.8rem;flex:1}
+      .card-body h3{font-size:1.1rem;font-weight:600}
+      .date{font-size:.8rem;color:#666;margin-top:-.2rem}
+      .card-body p{font-size:.9rem;color:#444;flex:1}
+      .tags{display:flex;flex-wrap:wrap;gap:.4rem}
+      .tags span{font-size:.7rem;background:#e7eceb;color:#0c5750;padding:3px 8px;border-radius:999px}
+      .card-body a{font-size:.85rem;font-weight:500;margin-top:.8rem;color:var(--accent)}
+
+      /* ---- Footer ---- */
+      footer{border-top:1px solid #eee;padding:80px 0 100px;margin-top:80px}
+      .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+      .footer-left p{font-size:.85rem;white-space:nowrap}
+      .footer-right ul{list-style:none;display:flex;gap:1rem}
+      .footer-right a{font-size:.85rem;text-decoration:underline transparent;transition:color .2s,text-decoration-color .2s}
+      .footer-right a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+
+      /* ---- Responsive ---- */
+      @media(max-width:600px){nav ul{gap:1.5rem}.nav-inner{height:64px}header.hero{padding:120px 0 60px}}
+    </style>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav>
+      <div class="container nav-inner">
+        <a href="index.html#home" class="brand">_rashadmalik</a>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="#top" class="active">Projects</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="top">
+      <div class="container">
+        <h1>Selected Projects</h1>
+      </div>
+    </header>
+
+    <!-- Projects -->
+    <main class="container projects-wrap">
+      <!-- Card 1: Whos Fibbing -->
+      <div class="card">
+        <img src="assets/Whos fibbing.png" alt="Whos fibbing project" />
+        <div class="card-body">
+          <h3>Who’s Fibbing: Audio Deception Detection</h3>
+          <p class="date">2024</p>
+          <p>
+          Developed a machine learning model with the aim of distinguishing between true and deceptive narratives based on audio recordings of spoken stories. Built a pipeline that trims, chunks & extracts silence-and-pitch features from the
+          <em>MLEnd Deception</em> dataset, then benchmarks logistic regression, SVM and k-NN models.
+          </p>
+          <div class="tags"><span>Python</span><span>librosa</span><span>scikit-learn</span><span>Audio ML</span></div>
+          <a href="https://rashad-malik.github.io/MLEnd-Mini-Project/Whos_fibbing.html" target="_blank">Read Notebook ↗</a>
+        </div>
+      </div>
+
+      <!-- Who’s Fibbing card -->
+    <div class="card">
+    <img src="assets/whos-fibbing.png" alt="Waveform and classification charts for Who’s Fibbing project" />
+    <div class="card-body">
+        <h3>Who’s Fibbing: Audio Deception Detection</h3>
+        <p class="date">2025</p>
+        <p>
+        Built a pipeline that trims, chunks & extracts silence-and-pitch features from the
+        <em>MLEnd Deception</em> dataset, then benchmarks logistic regression, SVM and k-NN models.
+        </p>
+        <div class="tags">
+        <span>Python</span><span>librosa</span><span>scikit-learn</span><span>Audio ML</span>
+        </div>
+        <a href="https://github.com/your-repo/whos-fibbing" target="_blank">Read Notebook ↗</a>
+    </div>
+    </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="https://placehold.co/600x400?text=Churn" alt="Churn model SHAP dashboard" />
+        <div class="card-body">
+          <h3>Customer Churn Predictor</h3>
+          <p class="date">2023</p>
+          <p>Gradient‑boosting model + SHAP dashboard that decreased churn by 12% at an EU telecom.</p>
+          <div class="tags"><span>XGBoost</span><span>SHAP</span><span>Streamlit</span></div>
+          <a href="#" target="_blank">View Project ↗</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <img src="https://placehold.co/600x400?text=Anomaly" alt="Real-time anomaly detection graph" />
+        <div class="card-body">
+          <h3>Real‑time Anomaly Detection</h3>
+          <p class="date">2022</p>
+          <p>Kafka + PySpark pipeline flagging fraud in under 50 ms for 20k events/sec in production.</p>
+          <div class="tags"><span>PySpark</span><span>Kafka</span><span>Scala</span></div>
+          <a href="#" target="_blank">Read Blog ↗</a>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="card">
+        <img src="https://placehold.co/600x400?text=RAG+Bot" alt="LLM support bot screenshot" />
+        <div class="card-body">
+          <h3>LLM‑powered Support Bot</h3>
+          <p class="date">2024</p>
+          <p>RAG system over 15k knowledge‑base docs; cut human support tickets by 38% within 3 months.</p>
+          <div class="tags"><span>LangChain</span><span>OpenAI</span><span>Vector DB</span></div>
+          <a href="#" target="_blank">View Demo ↗</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-left"><p>© 2025 Rashad Malik</p></div>
+        <div class="footer-right">
+          <ul>
+            <li><a href="https://github.com/rashad-malik" target="_blank">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rashadmalik/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://x.com/rashadmalik_" target="_blank">X</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
