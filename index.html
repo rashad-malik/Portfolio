@@ -40,13 +40,13 @@
 
       /* ------------ Hero ------------ */
       header.hero { padding: 120px 0; }
-      .hero-text { font-weight: 800; font-size: clamp(2.2rem, 6vw + 1rem, 3.8rem); max-width: 65ch; }
+      .hero-text { font-weight: 800; font-size: clamp(2.2rem, 6vw + 1rem, 3.8rem); max-width: 65ch; min-height: 5em;}
       .hero-text .accent { color: var(--accent); }
       #hero-line::after { content: ""; display: inline-block; width: 0.1em; height: 1.1em; background: var(--accent); margin-left: 2px; animation: blink 1s step-end infinite; }
       #hero-line.done::after { animation: none; opacity: 0; }
 
       /* ------------ Featured Project ------------ */
-      section.featured-project { padding: 140px 0 120px; border-top: 1px solid #eee; }
+      section.featured-project { padding: 60px 0 100px; border-top: 1px solid #eee; }
       .fade-wrap { transition: opacity 0.6s ease; }
       .feat-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 4rem; }
       .feat-meta h3 { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1rem; }
@@ -70,7 +70,7 @@
         nav .nav-inner { height: 64px; }
         header.hero { padding: 100px 0; }
         .hero-text { font-size: 2rem; }
-        .footer-grid { flex-direction: column; gap: 1rem; align-items: flex-start; }
+        .footer-right ul { display: flex; flex-wrap: wrap; row-gap: 0.5rem; column-gap: 1rem; }
       }
     </style>
   </head>
@@ -155,7 +155,7 @@
       const projects = [
         {
           title: "Who's Fibbing? - Detecting Deception in Spoken Narratives",
-          desc: "Developed a machine learning model with the aim of distinguishing between true and deceptive narratives based on audio recordings of spoken stories. Built a pipeline that trims, chunks & extracts silence-and-pitch features from the audio dataset.",
+          desc: "Developed a machine learning model with the aim of distinguishing between true and deceptive narratives based on audio recordings of spoken stories.",
           img: "assets/Whos fibbing.png",
           link: "https://rashad-malik.github.io/MLEnd-Mini-Project/Whos_fibbing.html"
         },
@@ -167,7 +167,7 @@
         },
         {
           title: "Predicting Bridge Health in Texas Using Regression Analysis",
-          desc: "Utilising regression modelling to predict bridge condition scores in Texas, helping identify key factors like age, traffic, and material in order to support data-driven maintenance planning.",
+          desc: "Regression modelling to predict bridge condition scores in Texas, helping identify key factors like age, traffic, and material in order to support data-driven maintenance planning.",
           img: "assets/bridges.png",
           link: "#"
         }
@@ -185,14 +185,21 @@
         setTimeout(() => {
           idx = (idx + 1) % projects.length;
           const p = projects[idx];
-          titleEl.textContent = p.title;
-          descEl.textContent = p.desc;
-          imgEl.src = p.img;
-          linkEl.href = p.link;
-          fader.style.opacity = 1;
+
+          // Preload image before setting
+          const tempImg = new Image();
+          tempImg.onload = () => {
+            titleEl.textContent = p.title;
+            descEl.textContent = p.desc;
+            imgEl.src = p.img;
+            linkEl.href = p.link;
+
+            fader.style.opacity = 1;
+          };
+          tempImg.src = p.img;
+
         }, 600);
       }
-
       setInterval(cycleProject, 6000);
     </script>
   </body>
