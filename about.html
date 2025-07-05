@@ -1,155 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About – Rashad Malik</title>
 
-    <!-- Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <style>
-      /* ========== Base ========== */
-      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-      html{opacity:0;animation:pageFade .9s ease-out forwards}
-      body{font-family:"Inter","Helvetica Neue",Arial,sans-serif;color:#111;line-height:1.6;background:#f9f7f3}
-      a{color:inherit;text-decoration:none}
-      img{max-width:100%;display:block;border-radius:10px}
-      :root{--accent:#0f766e;--container:min(90%,1000px)}
-      @keyframes pageFade{to{opacity:1}}
-      .container{width:var(--container);margin-inline:auto}
+        /* ========== BASE & VARIABLES ========== */
+        :root {
+            --accent: #0f766e;
+            --accent-light: #e7eceb;
+            --text-primary: #111;
+            --text-secondary: #555;
+            --background: #f9f7f3;
+            --border-color: #e5e5e5;
+            --card-background: #fff;
+            --container-width: min(90%, 1100px);
+        }
 
-      /* ========== Nav ========== */
-      nav{position:fixed;top:0;left:0;width:100%;background:#f9f7f3;border-bottom:1px solid #eee;z-index:1000}
-      .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
-      .brand{font-weight:600;font-size:.9rem;letter-spacing:.02em}
-      nav ul{list-style:none;display:flex;gap:2.5rem}
-      nav li a{position:relative;font-size:.9rem}
-      nav li a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--accent);transform:scaleX(0);opacity:0;transition:.25s}
-      nav li a:hover::after{transform:scaleX(1);opacity:.4}
-      nav li a.active::after{height:2px;transform:scaleX(1);opacity:1}
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      /* ========== Hero ========== */
-      header.hero{padding:140px 0 100px;text-align:center}
-      header.hero h1{font-size:clamp(2.4rem,6vw+1rem,4rem);font-weight:800}
+        html {
+            scroll-behavior: smooth;
+            opacity: 0;
+            animation: pageFade 0.9s ease-out forwards;
+        }
 
-      /* ========== About grid ========== */
-      .about-grid{display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start}
-      .about-text p{margin-bottom:1.3rem;max-width:65ch}
-      .skills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
-      .skills span{font-size:.8rem;background:#e7eceb;color:#0c5750;padding:4px 10px;border-radius:999px}
+        @keyframes pageFade {
+            to {
+                opacity: 1;
+            }
+        }
 
-      /* Timeline */
-      .timeline{margin-top:3rem;border-left:2px solid #ddd;padding-left:1.5rem}
-      .timeline-item{margin-bottom:2rem;position:relative}
-      .timeline-item::before{content:"";position:absolute;left:-11px;top:.35rem;width:10px;height:10px;border-radius:50%;background:var(--accent)}
-      .timeline-item h4{font-weight:600;margin-bottom:.2rem}
-      .timeline-item time{font-size:.8rem;color:#555}
+        body {
+            font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--background);
+        }
 
-      /* ========== Footer ========== */
-      footer{border-top:1px solid #eee;padding:80px 0 100px;margin-top:120px}
-      .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-      .footer-left p{font-size:.85rem;white-space:nowrap}
-      .footer-right ul{list-style:none;display:flex;gap:1rem}
-      .footer-right a{font-size:.85rem;transition:color .2s;text-decoration:underline transparent}
-      .footer-right a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-      /* Responsive */
-      @media(max-width:800px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
-      @media(max-width:600px){nav ul{gap:1.5rem}.nav-inner{height:64px}header.hero{padding:120px 0 80px}}
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: 10px;
+        }
+
+        /* ========== LAYOUT & TYPOGRAPHY ========== */
+        .container {
+            width: var(--container-width);
+            margin-inline: auto;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* ========== NAVIGATION (FROM ORIGINAL) ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--background);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+        
+        .nav-inner {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .brand {
+            font-weight: 600;
+            font-size: .9rem;
+            letter-spacing: .02em;
+            color: var(--text-primary);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        nav li a {
+            position: relative;
+            font-size: .9rem;
+            color: var(--text-primary);
+        }
+        
+        nav li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            opacity: 0;
+            transition: .25s;
+        }
+        
+        nav li a:hover::after,
+        nav li a.active::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            padding-top: 140px;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .hero-image {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--card-background);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .hero-text h1 {
+            font-size: clamp(2.4rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-text p {
+            max-width: 65ch;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 10px 18px;
+            background: var(--accent-light);
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-top: 1rem;
+        }
+
+        .hero-status .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(15, 118, 110, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+        }
+
+
+        /* ========== SKILLS SECTION ========== */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            font-size: .85rem;
+            background: var(--accent-light);
+            color: #0c5750;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* ========== EXPERIENCE SECTION ========== */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 9px;
+            bottom: 15px;
+            width: 4px;
+            background-color: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 3rem; /* Space for dot and line */
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 22px;
+            height: 22px;
+            background-color: var(--accent);
+            border: 4px solid var(--background);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-card {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-card h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .timeline-card time {
+            font-size: .85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-card ul {
+            list-style-position: outside;
+            padding-left: 1.2rem;
+        }
+        
+        .timeline-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ========== EDUCATION & CERTS SECTION ========== */
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .credential-card {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .credential-card h4 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        
+        .credential-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ========== FOOTER (FROM ORIGINAL) ========== */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 80px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .footer-left p {
+            font-size: .85rem;
+            white-space: nowrap;
+        }
+        
+        .footer-right ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-right a {
+            font-size: .85rem;
+            transition: color .2s;
+        }
+        
+        .footer-right a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-image {
+                margin-inline: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .timeline-item::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .timeline-card {
+                margin-top: 3rem;
+                width: 100%;
+            }
+        }
+
+        @media(max-width:600px){
+            nav ul{gap:1.5rem}
+            .nav-inner{height:64px}
+            .hero{padding-top:120px}
+        }
     </style>
-  </head>
-  <body>
-    <!-- ========= NAV ========= -->
+</head>
+<body>
     <nav>
-      <div class="container nav-inner">
-        <a href="index.html#home" class="brand">_rashadmalik</a>
-        <ul>
-          <li><a href="index.html#home">Home</a></li>
-          <li><a href="#top" class="active">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-        </ul>
-      </div>
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">_rashadmalik</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#top" class="active">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- ========= HERO ========= -->
-    <header class="hero" id="top">
-      <div class="container">
-        <h1>About Me</h1>
-      </div>
-    </header>
+    <main>
+        <section class="section hero" id="top">
+            <div class="container">
+                <div class="hero-grid">
+                    <img src="assets/Rashad.png" alt="Portrait of Rashad Malik" class="hero-image" />
+                    <div class="hero-text">
+                        <h1>Rashad Malik</h1>
+                        <p class="subtitle">Data Scientist & Technology Consultant</p>
+                        <p>I am a data professional transitioning from seven years of delivering SAP implementations and analytics projects for FTSE-100 clients into the field of data science.</p>
+                        <p>With a foundation in Mechanical Engineering and a passion for turning chaotic data into clear insights, I'm currently completing an MSc in Data Science & AI to deepen my expertise.</p>
+                        <div class="hero-status">
+                            <span class="status-dot"></span>
+                            Actively seeking new Data Science opportunities in London.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Core Skills</h2>
+                <div class="skills-container">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Statistical Modelling</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">Data Visualisation</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">ERP</span>
+                </div>
+            </div>
+        </section>
 
-    <!-- ========= ABOUT GRID ========= -->
-    <section class="container about-grid">
-      <img src="assets/Rashad.png" alt="Portrait of Rashad Malik" />
-      <div class="about-text">
-        <p>I’m Rashad Malik, a London‑based data scientist with a background in mechanical engineering and seven years delivering analytics and SAP projects for FTSE‑100 clients. I love designing pipelines that turn chaotic enterprise data into clear, actionable insights.</p>
-        <p>At PwC I catalogued 800+ integrations and coordinated 1,400 transports for a global S/4HANA rollout, then pivoted to drive data‑centric asset‑management demos for energy utilities. Earlier at Bluefin I led legacy‑data migration for one of the UK’s first green‑field S/4HANA projects. My journey began on the turbine decks of RWE’s Pembroke power station, where I learned how data and engineering decisions intersect in the real world.</p>
+        <section class="section" style="background-color: #f4f2ed;">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <h4>SAP Consultant, Senior Associate</h4>
+                            <p><strong>PwC</strong> &middot; London, UK</p>
+                            <time>May 2018 – August 2023</time>
+                            <ul>
+                               <li>Played a key role in large-scale SAP implementations, specialising in the Enterprise Asset Management (plant maintenance) module for FTSE 100 clients.</li>
+                               <li>Drove stakeholder engagement and adoption by building and presenting targeted proof-of-concept solutions and delivering functional and technical system demos of the SAP Intelligent Asset Management suite.</li>
+                               <li>Owned critical technical workstreams, which involved creating a complex integration catalogue for a major digital transformation, and managing over 1,400 technical transports to ensure a smooth go-live.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <h4>S/4HANA Consultant</h4>
+                            <p><strong>Bluefin Solutions</strong> &middot; London, UK</p>
+                            <time>September 2016 – May 2018</time>
+                            <ul>
+                               <li>Joined the S/4HANA delivery function after completing the graduate consulting boot-camp, assisting with one of the first S/4HANA Cloud implementations in the country.</li>
+                               <li>Led the data migration workstream, migrating the client's master data from legacy systems to the new SAP system, and building over 20 Legacy System Migration Workbench (LSMW) projects for their master and transactional data.</li>
+                               <li>Contributed to a BPC forecasting solution by building and maintaining over 60 BEx Queries and more than 50 Analysis for Office workbooks to assist the client with reporting and financial analysis.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-card">
+                            <h4>Industrial Placement Mechanical Engineer</h4>
+                            <p><strong>RWE npower</strong> &middot; Pembroke, Wales</p>
+                            <time>October 2012 – September 2013</time>
+                            <ul>
+                               <li>Completed an industrial placement at the Pembroke gas-fired power station, undertaking both on-site and in-office projects related to plant maintenance and mechanical engineering.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <h3>Core Skills</h3>
-        <div class="skills">
-          <span>Python</span><span>SQL</span><span>Pandas</span><span>PySpark</span><span>Tableau</span><span>Kafka</span><span>Docker</span><span>Git</span><span>Data Visualisation</span><span>Statistical Modelling</span><span>SAP S/4HANA</span><span>Stakeholder Engagement</span>
-        </div>
-
-        <h3 style="margin-top:2.5rem">Experience</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4>SAP Consultant, Senior Associate – PwC</h4>
-            <time>May 2018 – Aug 2023</time>
-            <p>Owned data‑analytics workstreams, built an 800‑line integration catalogue and managed 1.4k transports during a global S/4HANA cut‑over. Ran monthly demos of SAP Intelligent Asset Management for energy clients.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>S/4HANA Consultant – Bluefin Solutions</h4>
-            <time>Sep 2016 – May 2018</time>
-            <p>Led data migration for a green‑field S/4HANA implementation; delivered 60+ BEx queries and 50+ Analysis for Office reports for a BPC forecasting rollout.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>Industrial Placement Mechanical Engineer – RWE npower</h4>
-            <time>Oct 2012 – Sep 2013</time>
-            <p>Supported maintenance projects at the 2 GW Pembroke gas‑fired power station, combining on‑site inspections with data analysis.</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top:2.5rem">Education & Certifications</h3>
-        <div class="timeline" style="border:none;padding-left:0">
-          <div class="timeline-item" style="border:none;">
-            <h4>MSc Data Science & Artificial Intelligence – Queen Mary University of London</h4>
-            <time>2024 – 2025 (expected)</time>
-          </div>
-          <div class="timeline-item" style="border:none;">
-            <h4>MSc Management – Warwick Business School</h4>
-            <time>2014 – 2015</time>
-          </div>
-          <div class="timeline-item" style="border:none;">
-            <h4>BEng Mechanical Engineering with Industry – University of Leicester</h4>
-            <time>2010 – 2014</time>
-          </div>
-          <div class="timeline-item" style="border:none;">
-            <h4>Data Analyst in Python – Dataquest</h4>
-            <time>2023</time>
-          </div>
-          <div class="timeline-item" style="border:none;">
-            <h4>Data Visualisation with Tableau – Dataquest</h4>
-            <time>2023</time>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========= FOOTER ========= -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Education & Certifications</h2>
+                <div class="credentials-grid">
+                    <div class="credential-card">
+                        <h4>MSc, Data Science & Artificial Intelligence</h4>
+                       <p>Queen Mary University of London (Expected September 2025)</p>
+                    </div>
+                     <div class="credential-card">
+                        <h4>MSc, Management</h4>
+                       <p>Warwick Business School (2015)</p>
+                    </div>
+                     <div class="credential-card">
+                        <h4>BEng, Mechanical Engineering with Industry</h4>
+                       <p>University of Leicester (2014)</p>
+                    </div>
+                     <div class="credential-card">
+                        <h4>Data Analyst in Python</h4>
+                       <p>Dataquest.io (2023)</p>
+                    </div>
+                     <div class="credential-card">
+                        <h4>Data Visualisation with Tableau</h4>
+                       <p>Dataquest.io (2023)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
     <footer>
-      <div class="container footer-grid">
-        <div class="footer-left"><p>© 2025 Rashad Malik</p></div>
-        <div class="footer-right">
-          <ul>
-            <li><a href="https://github.com/rashad-malik" target="_blank">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/rashadmalik/" target="_blank">LinkedIn</a></li>
-            <li><a href="https://x.com/rashadmalik_" target="_blank">X</a></li>
-          </ul>
+        <div class="container footer-grid">
+            <div class="footer-left"><p>© 2025 Rashad Malik</p></div>
+            <div class="footer-right">
+                <ul>
+                    <li><a href="https://github.com/rashad-malik" target="_blank">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/rashadmalik/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://x.com/rashadmalik_" target="_blank">X</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
     </footer>
-  </body>
+</body>
 </html>

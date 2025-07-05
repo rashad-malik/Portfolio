@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio – Rashad Malik</title>
 
-    <!-- Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,106 +13,222 @@
       /* ------------ CSS RESET ------------ */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { opacity: 0; animation: pageFade 0.9s ease-out forwards; }
-      body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: #111; line-height: 1.6; background: #f9f7f3;  }
+      body {
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        color: #111;
+        line-height: 1.6;
+        background: #f9f7f3;
+      }
       img { max-width: 100%; display: block; }
       a { color: inherit; text-decoration: none; }
 
+      /* Canvas for particle effect */
+      #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
       /* ------------ Tokens ------------ */
-      :root { --accent: #0f766e; --container: min(90%, 1000px); }
+      :root {
+        --accent: #0f766e;
+        --accent-dark: #0d655d;
+        --border-color: #e5e5e5;
+        --text-primary: #111;
+        --container: min(90%, 1000px);
+      }
 
       /* ------------ Keyframes ------------ */
       @keyframes pageFade { to { opacity: 1; } }
       @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-
+      
       /* ------------ Utilities ------------ */
       .container { width: var(--container); margin-inline: auto; }
 
       /* ------------ Navigation ------------ */
-      nav { position: fixed; top: 0; left: 0; width: 100%; background: #f9f7f3; border-bottom: 1px solid #eee; z-index: 1000;  border-bottom: 1px solid #eee; z-index: 1000; }
-      .nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; }
-      nav .brand { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.02em; }
-      nav ul { list-style: none; display: flex; gap: 2.5rem; }
-      nav li a { position: relative; font-size: 0.9rem; }
-      nav li a::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 100%; height: 1px; background: var(--accent); transform: scaleX(0); opacity: 0; transition: transform 0.25s ease, opacity 0.25s ease; }
-      nav li a:hover::after { transform: scaleX(1); opacity: 0.4; }
-      nav li a.active::after { height: 2px; transform: scaleX(1); opacity: 1; }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(249, 247, 243, 0.85);
+        backdrop-filter: blur(5px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 1000;
+      }
+      .nav-inner {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        font-weight: 600;
+        font-size: .9rem;
+        letter-spacing: .02em;
+        color: var(--text-primary);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2.5rem;
+      }
+      nav li a {
+        position: relative;
+        font-size: .9rem;
+        color: var(--text-primary);
+      }
+      nav li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        opacity: 0;
+        transition: .25s;
+      }
+      nav li a:hover::after,
+      nav li a.active::after {
+        transform: scaleX(1);
+        opacity: 1;
+      }
 
       /* ------------ Hero ------------ */
-      header.hero { padding: 120px 0; }
-      .hero-text { font-weight: 800; font-size: clamp(2.2rem, 6vw + 1rem, 3.8rem); max-width: 65ch; min-height: 5em;}
+      header.hero {
+          padding: 160px 0;
+          text-align: center;
+      }
+      .hero-text {
+        font-weight: 800;
+        font-size: clamp(2.2rem, 6vw + 1rem, 3.8rem);
+        max-width: 65ch;
+        min-height: 5em;
+        margin-inline: auto;
+      }
       .hero-text .accent { color: var(--accent); }
-      #hero-line::after { content: ""; display: inline-block; width: 0.1em; height: 1.1em; background: var(--accent); margin-left: 2px; animation: blink 1s step-end infinite; }
+      #hero-line::after {
+        content: "";
+        display: inline-block;
+        width: 0.1em;
+        height: 1.1em;
+        background: var(--accent);
+        margin-left: 2px;
+        animation: blink 1s step-end infinite;
+      }
       #hero-line.done::after { animation: none; opacity: 0; }
 
-      /* ------------ Featured Project ------------ */
-      section.featured-project { padding: 60px 0 100px; border-top: 1px solid #eee; }
-      .fade-wrap { transition: opacity 0.6s ease; }
-      .feat-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 4rem; }
-      .feat-meta h3 { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1rem; }
-      .feat-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; }
-      .feat-desc { font-size: 0.95rem; color: #444; margin-bottom: 2rem; max-width: 45ch; }
-      .feat-link { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; }
-      .feat-img-wrapper { border-radius: 8px; overflow: hidden; }
+      /* ------------ Hero Buttons ------------ */
+      .hero-buttons {
+          margin-top: 0rem;
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          flex-wrap: wrap;
+      }
+      .btn {
+          padding: 0.75rem 1.5rem;
+          border-radius: 6px;
+          font-weight: 500;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: .9rem;
+          letter-spacing: .02em;
+          border: 1px solid transparent;
+      }
+      .btn-primary {
+          background-color: var(--accent);
+          color: #fff;
+      }
+      .btn-primary:hover {
+          background-color: var(--accent-dark);
+          transform: translateY(-2px);
+      }
+      .btn-secondary {
+          background-color: transparent;
+          color: var(--accent);
+          border: 1px solid var(--accent);
+      }
+      .btn-secondary:hover {
+          background-color: var(--accent);
+          color: #fff;
+          transform: translateY(-2px);
+      }
 
       /* ------------ Footer ------------ */
-      footer { border-top: 1px solid #eee; padding: 80px 0 100px; }
-      .footer-grid { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-      .footer-left p { font-size: 0.85rem; white-space: nowrap; }
-      .footer-right ul { list-style: none; display: flex; gap: 1rem; }
-      .footer-right a { font-size: 0.85rem; transition: color 0.2s ease, text-decoration-color 0.2s ease; text-decoration: underline transparent; }
-      .footer-right a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+      footer {
+        border-top: 1px solid var(--border-color);
+        padding: 80px 0;
+        /* Add position relative so its position is a clear reference */
+        position: relative;
+        background-color: #f9f7f3; /* Ensure footer has a solid background */
+      }
+      .footer-grid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .footer-left p {
+        font-size: .85rem;
+        white-space: nowrap;
+      }
+      .footer-right ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+      }
+      .footer-right a {
+        font-size: .85rem;
+        font-weight: 500;
+        color: var(--accent);
+        text-decoration: none;
+        transition: color .2s;
+      }
+      .footer-right a:hover {
+        text-decoration: underline;
+      }
 
       /* ------------ Responsive ------------ */
-      @media (max-width: 800px) { .feat-grid { grid-template-columns: 1fr; } }
       @media (max-width: 600px) {
         nav ul { gap: 1.5rem; }
-        nav .nav-inner { height: 64px; }
+        .nav-inner { height: 64px; }
         header.hero { padding: 100px 0; }
         .hero-text { font-size: 2rem; }
-        .footer-right ul { display: flex; flex-wrap: wrap; row-gap: 0.5rem; column-gap: 1rem; }
+        .footer-grid { flex-direction: column; gap: 1.5rem; }
+        .footer-right ul { display: flex; flex-wrap: wrap; justify-content: center; row-gap: 0.5rem; column-gap: 1rem; }
       }
     </style>
   </head>
   <body>
-    <!-- ---------- Navigation ---------- -->
+    <canvas id="particle-canvas"></canvas>
+
     <nav>
       <div class="container nav-inner">
-        <a href="#home" class="brand">_rashadmalik</a>
+        <a href="index.html" class="brand">_rashadmalik</a>
         <ul>
-          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="projects.html">Projects</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- ---------- Hero ---------- -->
     <header class="hero" id="home">
       <div class="container">
         <p class="hero-text"><span id="hero-line"></span></p>
+        <div class="hero-buttons">
+          <a href="about.html" class="btn btn-primary">About Me</a>
+          <a href="projects.html" class="btn btn-secondary">My Work</a>
+        </div>
       </div>
     </header>
 
-    <!-- ---------- Featured Project ---------- -->
-    <section class="featured-project" id="projects">
-      <div class="container fade-wrap" id="project-fader">
-        <div class="feat-grid">
-          <div class="feat-meta">
-            <h3>Featured Work</h3>
-            <h2 class="feat-title" id="proj-title">Who's Fibbing? - Detecting Deception in Spoken Narratives</h2>
-            <p class="feat-desc" id="proj-desc">
-              Developed a machine learning model with the aim of distinguishing between true and deceptive narratives based on audio recordings of spoken stories.
-            </p>
-            <a id="proj-link" href="https://rashad-malik.github.io/MLEnd-Mini-Project/Whos_fibbing.html" class="feat-link">View ↗</a>
-          </div>
-          <div class="feat-img-wrapper">
-            <img id="proj-img" src="assets/Whos fibbing.png" alt="Project preview" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ---------- Footer ---------- -->
     <footer>
       <div class="container footer-grid">
         <div class="footer-left"><p>© 2025 Rashad Malik</p></div>
@@ -127,86 +242,148 @@
       </div>
     </footer>
 
-    <!-- ---------- JS ---------- -->
     <script>
-      // -- Hero typewriter
       document.addEventListener("DOMContentLoaded", () => {
+        // -- Hero typewriter
         const hero = document.getElementById("hero-line");
-        const full = "I transform raw data into human-friendly insights that spark better decisions :-)";
+        // The string to type now excludes the smiley
+        const full = "I use data to build, measure, and improve the things that matter ";
         let i = 0;
         const speed = 30;
+
         function type() {
           if (i < full.length) {
             hero.textContent += full.charAt(i);
             i++;
             setTimeout(type, speed);
           } else {
-            hero.innerHTML = hero.innerHTML.replace(
-              ":-)",
-              '<span class="accent">:-)</span>'
-            );
+            // This runs after the main sentence is typed
+            // Create a span for the smiley, style it, and append it
+            const smileySpan = document.createElement('span');
+            smileySpan.className = 'accent';
+            smileySpan.textContent = ':-)';
+            hero.appendChild(smileySpan);
+            
+            // Add the 'done' class to stop the blinking cursor
             hero.classList.add("done");
           }
         }
         type();
-      });
 
-      // -- Featured project rotator
-      const projects = [
-        {
-          title: "Who's Fibbing? - Detecting Deception in Spoken Narratives",
-          desc: "Developed a machine learning model with the aim of distinguishing between true and deceptive narratives based on audio recordings of spoken stories.",
-          img: "assets/Whos fibbing.png",
-          link: "https://rashad-malik.github.io/MLEnd-Mini-Project/Whos_fibbing.html"
-        },
-        {
-          title: "Demographic Analysis of UK Population Using 2021 Census Data",
-          desc: "Exploratory analysis of national demographic data from the 2021 UK Census, focusing on the population distribution across different age groups in England.",
-          img: "assets/lsoa analysis.png",
-          link: "#"
-        },
-        {
-          title: "Predicting Bridge Health in Texas Using Regression Analysis",
-          desc: "Regression modelling to predict bridge condition scores in Texas, helping identify key factors like age, traffic, and material in order to support data-driven maintenance planning.",
-          img: "assets/bridges.png",
-          link: "#"
-        },
-        {
-          title: "Analysis of Regional Property Price Trends in England",
-          desc: "Analysing regional property price changes across England, via statistical tests to assess the independence of price trends from regional classifications.",
-          img: "assets/flat_prices.png",
-          link: "#"
+        // -- Interactive Particle Constellation Script
+        const canvas = document.getElementById('particle-canvas');
+        const footer = document.querySelector('footer');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const numParticles = window.innerWidth > 768 ? 100 : 40;
+        const connectRadius = 120;
+        const mouseConnectRadius = 150;
+
+        const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+        const textColor = 'rgba(17, 17, 17, 0.5)';
+        
+        const mouse = { x: null, y: null };
+
+        function updateCanvasClip() {
+            const footerTop = footer.getBoundingClientRect().top;
+            const bottomClip = Math.max(0, window.innerHeight - footerTop);
+            canvas.style.clipPath = `inset(0 0 ${bottomClip}px 0)`;
         }
-      ];
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            updateCanvasClip();
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('scroll', updateCanvasClip, { passive: true });
+        
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
-      let idx = 0;
-      const fader = document.getElementById("project-fader");
-      const titleEl = document.getElementById("proj-title");
-      const descEl = document.getElementById("proj-desc");
-      const imgEl = document.getElementById("proj-img");
-      const linkEl = document.getElementById("proj-link");
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
 
-      function cycleProject() {
-        fader.style.opacity = 0;
-        setTimeout(() => {
-          idx = (idx + 1) % projects.length;
-          const p = projects[idx];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() * 0.5 - 0.25);
+                this.speedY = (Math.random() * 0.5 - 0.25);
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+            draw() {
+                ctx.fillStyle = textColor;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
 
-          // Preload image before setting
-          const tempImg = new Image();
-          tempImg.onload = () => {
-            titleEl.textContent = p.title;
-            descEl.textContent = p.desc;
-            imgEl.src = p.img;
-            linkEl.href = p.link;
+        function init() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
 
-            fader.style.opacity = 1;
-          };
-          tempImg.src = p.img;
+        function connect() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < connectRadius) {
+                        ctx.strokeStyle = textColor;
+                        ctx.lineWidth = 0.2;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+                if (mouse.x && mouse.y) {
+                    const dx = particles[a].x - mouse.x;
+                    const dy = particles[a].y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouseConnectRadius) {
+                        ctx.strokeStyle = accentColor;
+                        ctx.lineWidth = 0.3;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            connect();
+            requestAnimationFrame(animate);
+        }
 
-        }, 600);
-      }
-      setInterval(cycleProject, 6000);
+        resizeCanvas();
+        init();
+        animate();
+      });
     </script>
   </body>
 </html>
