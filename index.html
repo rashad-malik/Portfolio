@@ -104,6 +104,10 @@
           padding: 160px 0;
           text-align: center;
       }
+      .no-wrap {
+        display: inline-block;
+        white-space: nowrap;
+      }
       .hero-text {
         font-weight: 800;
         font-size: clamp(2.2rem, 6vw + 1rem, 3.8rem);
@@ -260,8 +264,8 @@
             // This runs after the main sentence is typed
             // Create a span for the smiley, style it, and append it
             const smileySpan = document.createElement('span');
-            smileySpan.className = 'accent';
-            smileySpan.textContent = ':-)';
+            smileySpan.className = 'accent no-wrap';
+            smileySpan.textContent = ' :-)';
             hero.appendChild(smileySpan);
             
             // Add the 'done' class to stop the blinking cursor
