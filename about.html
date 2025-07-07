@@ -192,12 +192,37 @@
             background-color: var(--accent);
             border-radius: 50%;
             animation: pulse 2s infinite;
+            flex-shrink: 0; /* Prevents the dot from shrinking */
         }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(15, 118, 110, 0); }
             100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+        }
+        
+        /* ========== JUMP-TO NAVIGATION ========== */
+        .jump-to-nav {
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .jump-to-nav a {
+            margin: 0 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .jump-to-nav a:hover {
+            color: var(--accent);
+        }
+
+        .jump-to-nav span {
+            color: var(--border-color);
         }
 
 
@@ -416,7 +441,15 @@
             </div>
         </section>
         
-        <section class="section">
+        <div class="jump-to-nav">
+            <a href="#skills">Core Skills</a>
+            <span>&middot;</span>
+            <a href="#experience">Experience</a>
+            <span>&middot;</span>
+            <a href="#education">Education</a>
+        </div>
+        
+        <section class="section" id="skills">
             <div class="container">
                 <h2 class="section-title">Core Skills</h2>
                 <div class="skills-container">
@@ -424,15 +457,17 @@
                     <span class="skill-tag">Pandas</span>
                     <span class="skill-tag">Statistical Modelling</span>
                     <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">Data Mining</span>
+                    <span class="skill-tag">Information Retrieval</span>
                     <span class="skill-tag">Data Visualisation</span>
                     <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">Change Management</span>
                     <span class="skill-tag">ERP</span>
                 </div>
             </div>
         </section>
 
-        <section class="section" style="background-color: #f4f2ed;">
+        <section class="section" id="experience" style="background-color: #f4f2ed;">
             <div class="container">
                 <h2 class="section-title">Experience</h2>
                 <div class="timeline">
@@ -442,9 +477,9 @@
                             <p><strong>PwC</strong> &middot; London, UK</p>
                             <time>May 2018 – August 2023</time>
                             <ul>
-                               <li>Played a key role in large-scale SAP implementations, specialising in the Enterprise Asset Management (plant maintenance) module for FTSE 100 clients.</li>
-                               <li>Drove stakeholder engagement and adoption by building and presenting targeted proof-of-concept solutions and delivering functional and technical system demos of the SAP Intelligent Asset Management suite.</li>
-                               <li>Owned critical technical workstreams, which involved creating a complex integration catalogue for a major digital transformation, and managing over 1,400 technical transports to ensure a smooth go-live.</li>
+                                <li>Played a key role in large-scale SAP implementations, specialising in the Enterprise Asset Management (plant maintenance) module for FTSE 100 clients.</li>
+                                <li>Drove stakeholder engagement and adoption by building and presenting targeted proof-of-concept solutions and delivering functional and technical system demos of the SAP Intelligent Asset Management suite.</li>
+                                <li>Owned critical technical workstreams, which involved creating a complex integration catalogue for a major digital transformation, and managing over 1,400 technical transports to ensure a smooth go-live.</li>
                             </ul>
                         </div>
                     </div>
@@ -454,19 +489,19 @@
                             <p><strong>Bluefin Solutions</strong> &middot; London, UK</p>
                             <time>September 2016 – May 2018</time>
                             <ul>
-                               <li>Joined the S/4HANA delivery function after completing the graduate consulting boot-camp, assisting with one of the first S/4HANA Cloud implementations in the country.</li>
-                               <li>Led the data migration workstream, migrating the client's master data from legacy systems to the new SAP system, and building over 20 Legacy System Migration Workbench (LSMW) projects for their master and transactional data.</li>
-                               <li>Contributed to a BPC forecasting solution by building and maintaining over 60 BEx Queries and more than 50 Analysis for Office workbooks to assist the client with reporting and financial analysis.</li>
+                                <li>Joined the S/4HANA delivery function after completing the graduate consulting boot-camp, assisting with one of the first S/4HANA Cloud implementations in the country.</li>
+                                <li>Led the data migration workstream, migrating the client's master data from legacy systems to the new SAP system, and building over 20 Legacy System Migration Workbench (LSMW) projects for their master and transactional data.</li>
+                                <li>Contributed to a BPC forecasting solution by building and maintaining over 60 BEx Queries and more than 50 Analysis for Office workbooks to assist the client with reporting and financial analysis.</li>
                             </ul>
                         </div>
                     </div>
-                     <div class="timeline-item">
+                      <div class="timeline-item">
                         <div class="timeline-card">
                             <h4>Industrial Placement Mechanical Engineer</h4>
                             <p><strong>RWE npower</strong> &middot; Pembroke, Wales</p>
                             <time>October 2012 – September 2013</time>
                             <ul>
-                               <li>Completed an industrial placement at the Pembroke gas-fired power station, undertaking both on-site and in-office projects related to plant maintenance and mechanical engineering.</li>
+                                <li>Completed an industrial placement at the Pembroke gas-fired power station, undertaking both on-site and in-office projects related to plant maintenance and mechanical engineering.</li>
                             </ul>
                         </div>
                     </div>
@@ -474,7 +509,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="education">
             <div class="container">
                 <h2 class="section-title">Education & Certifications</h2>
                 <div class="credentials-grid">
