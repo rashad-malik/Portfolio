@@ -32,14 +32,12 @@
 
       html {
         scroll-behavior: smooth;
-        opacity: 0;
-        animation: pageFade 0.9s ease-out forwards;
+        opacity: 0; /* Start with the page hidden */
+        transition: opacity 0.7s ease-out; /* Use a transition for a smooth fade-in */
       }
 
-      @keyframes pageFade {
-        to {
-          opacity: 1;
-        }
+      html.is-loaded {
+        opacity: 1; /* This class will trigger the fade-in */
       }
 
       body {
@@ -358,7 +356,7 @@
 
           <div class="projects-wrap">
             <div class="card">
-              <img src="assets/Whos fibbing.png" alt="Whos fibbing project thumbnail" />
+              <img src="assets/Whos fibbing.png" alt="Whos fibbing project thumbnail" class="project-image" />
               <div class="card-body">
                 <h3>Who’s Fibbing: Audio Deception Detection</h3>
                 <p class="date">Dec 6, 2024</p>
@@ -366,7 +364,7 @@
                   Developed a machine learning model to distinguish between true and deceptive narratives based on audio recordings of spoken stories.
                 </p>
                 <div class="tags">
-                  <span>Python</span><span>librosa</span><span>scikit-learn</span>
+                  <span>Python</span><span>Matplotlib</span><span>Librosa</span><span>Scikit-learn</span><span>Machine Learning</span>
                 </div>
                 <div class="links">
                   <a href="https://rashad-malik.github.io/MLEnd-Mini-Project/Whos_fibbing.html" target="_blank">Read Notebook ↗</a>
@@ -376,7 +374,7 @@
             </div>
 
             <div class="card">
-              <img src="assets/lsoa analysis.png" alt="LSOA Analysis project thumbnail" />
+              <img src="assets/lsoa analysis.png" alt="LSOA Analysis project thumbnail" class="project-image" />
               <div class="card-body">
                 <h3>Demographic Analysis of UK Population</h3>
                 <p class="date">Oct 9, 2024</p>
@@ -384,7 +382,7 @@
                   Exploratory analysis of national demographic data from the 2021 UK Census, focusing on population distribution across different age groups.
                 </p>
                 <div class="tags">
-                  <span>Python</span><span>Pandas</span><span>GeoPandas</span>
+                  <span>Python</span><span>Pandas</span><span>Matplotlib</span><span>GeoPandas</span>
                 </div>
                 <div class="links">
                   <a href="#" target="_blank">Read Notebook ↗</a>
@@ -394,15 +392,15 @@
             </div>
 
             <div class="card">
-              <img src="assets/bridges.png" alt="Texas Bridges project thumbnail" />
+              <img src="assets/bridges.png" alt="Texas Bridges project thumbnail" class="project-image" />
               <div class="card-body">
                 <h3>Predicting Bridge Health in Texas</h3>
                 <p class="date">Nov 1, 2024</p>
                 <p>
-                    Utilised regression modelling to predict bridge condition scores, helping identify key factors like age and traffic to support maintenance planning.
+                  Utilised regression modelling to predict bridge condition scores, helping identify key factors like age and traffic to support maintenance planning.
                 </p>
                 <div class="tags">
-                  <span>Python</span><span>Pandas</span><span>Regression</span>
+                  <span>Python</span><span>Pandas</span><span>Numpy</span><span>Regression</span>
                 </div>
                 <div class="links">
                   <a href="#" target="_blank">Read Notebook ↗</a>
@@ -412,7 +410,7 @@
             </div>
 
             <div class="card">
-              <img src="assets/flat_prices.png" alt="Flat Prices project thumbnail" />
+              <img src="assets/flat_prices.png" alt="Flat Prices project thumbnail" class="project-image" />
               <div class="card-body">
                 <h3>Analysis of Regional Property Price Trends</h3>
                 <p class="date">Nov 26, 2024</p>
@@ -420,7 +418,7 @@
                   An analysis of property price changes across England, using statistical tests to assess the independence of trends from regional classifications.
                 </p>
                 <div class="tags">
-                  <span>Python</span><span>Pandas</span><span>Scipy</span><span>Permutation Test</span>
+                  <span>Python</span><span>Pandas</span><span>Numpy</span><span>Chi Squared</span><span>Permutation Tests</span>
                 </div>
                 <div class="links">
                   <a href="#" target="_blank">Read Notebook ↗</a>
@@ -430,7 +428,7 @@
             </div>
 
             <div class="card">
-              <img src="assets/clip.png" alt="CLIP project thumbnail" />
+              <img src="assets/clip.png" alt="CLIP project thumbnail" class="project-image" />
               <div class="card-body">
                 <h3>Art Discovery with CLIP</h3>
                 <p class="date">Apr 15, 2025</p>
@@ -438,7 +436,7 @@
                   A search engine that utilises CLIP's zero-shot capabilities to retrieve artworks from the WikiArt dataset, bridging the gap between text and images.
                 </p>
                 <div class="tags">
-                  <span>Python</span><span>Pytorch</span><span>CLIP</span><span>Information Retrieval</span>
+                  <span>Python</span><span>Pytorch</span><span>CLIP</span><span>Streamlit</span><span>Information Retrieval</span>
                 </div>
                 <div class="links">
                   <a href="#" target="_blank">Read Notebook ↗</a>
@@ -472,9 +470,39 @@
     </footer>
 
     <script>
+      // SCRIPT 1: FADE IN PAGE AFTER IMAGES LOAD
+      document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img.project-image');
+        const htmlEl = document.documentElement;
+
+        // If there are no images to load, just show the page
+        if (images.length === 0) {
+          htmlEl.classList.add('is-loaded');
+          return;
+        }
+
+        // Create a promise for each image
+        const imagePromises = [...images].map(img => {
+          return new Promise((resolve, reject) => {
+            // If image is already loaded (e.g., from cache)
+            if (img.complete) {
+              resolve();
+            } else {
+              img.addEventListener('load', resolve);
+              img.addEventListener('error', resolve); // Also resolve on error so page doesn't get stuck
+            }
+          });
+        });
+
+        // When all images have loaded, fade in the page
+        Promise.all(imagePromises).then(() => {
+          htmlEl.classList.add('is-loaded');
+        });
+      });
+
+      // SCRIPT 2: PROJECT SORTING LOGIC
       document.addEventListener("DOMContentLoaded", function () {
         const container = document.querySelector(".projects-wrap");
-        // Convert NodeList to Array to use array methods like .sort()
         const cards = Array.from(container.querySelectorAll(".card"));
         
         const sortByNameBtn = document.getElementById("sortByName");
@@ -484,39 +512,32 @@
           let sortedCards;
 
           if (criteria === 'name') {
-            // Sort alphabetically by the project title (H3)
             sortedCards = cards.sort((a, b) => {
               const nameA = a.querySelector("h3").textContent.trim();
               const nameB = b.querySelector("h3").textContent.trim();
               return nameA.localeCompare(nameB);
             });
-            // Update active state for buttons
             sortByNameBtn.classList.add('active');
             sortByDateBtn.classList.remove('active');
 
           } else if (criteria === 'date') {
-            // Sort by parsing the date string. Newest projects first.
             sortedCards = cards.sort((a, b) => {
               const dateA = new Date(a.querySelector(".date").textContent.trim());
               const dateB = new Date(b.querySelector(".date").textContent.trim());
-              return dateB - dateA; // Sort in descending order (newest first)
+              return dateB - dateA; // Sort descending (newest first)
             });
-            // Update active state for buttons
             sortByDateBtn.classList.add('active');
             sortByNameBtn.classList.remove('active');
           }
 
-          // Clear the container and re-append cards in the new sorted order
           container.innerHTML = "";
           sortedCards.forEach(card => container.appendChild(card));
         };
 
-        // Add click event listeners to the buttons
         sortByNameBtn.addEventListener('click', () => sortCards('name'));
         sortByDateBtn.addEventListener('click', () => sortCards('date'));
 
-        // Perform an initial sort by date when the page loads
-        sortCards('date');
+        sortCards('date'); // Initial sort
       });
     </script>
   </body>
