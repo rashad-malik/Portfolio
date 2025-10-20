@@ -203,21 +203,13 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 1rem;
+        gap: 1rem;
       }
 
       .filter-header h3 {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 600;
-        color: var(--text-primary);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .filter-icon {
-        width: 18px;
-        height: 18px;
-        fill: var(--accent);
+        color: var(--text-secondary);
       }
 
       .clear-filters {
@@ -230,15 +222,17 @@
         padding: 4px 8px;
         border-radius: 4px;
         transition: all 0.2s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .clear-filters.visible {
+        opacity: 1;
+        pointer-events: auto;
       }
 
       .clear-filters:hover {
         background: rgba(15, 118, 110, 0.1);
-      }
-
-      .clear-filters:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
       }
 
       .skills-filter {
@@ -249,36 +243,26 @@
 
       .skill-filter-item {
         font-size: 0.85rem;
-        background: rgba(15, 118, 110, 0.08);
+        background: transparent;
         color: var(--text-secondary);
-        padding: 8px 14px;
+        padding: 6px 12px;
         border-radius: 6px;
         font-weight: 500;
         border: 1px solid var(--border-color);
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
         user-select: none;
       }
 
       .skill-filter-item:hover {
         border-color: var(--accent);
-        background: rgba(15, 118, 110, 0.12);
+        color: var(--text-primary);
       }
 
       .skill-filter-item.active {
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+        background: var(--accent);
         color: white;
         border-color: var(--accent);
-        font-weight: 600;
-      }
-
-      .filter-results {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border-color);
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        text-align: center;
       }
 
       /* ========== PROJECT LIST ========== */
@@ -554,25 +538,17 @@
           <!-- Filter Section -->
           <div class="filter-section">
             <div class="filter-header">
-              <h3>
-                <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                </svg>
-                Filter by Skills
-              </h3>
-              <button class="clear-filters" id="clearFilters" disabled>Clear All</button>
+              <h3>Filter by skill:</h3>
+              <button class="clear-filters" id="clearFilters">Clear</button>
             </div>
             <div class="skills-filter" id="skillsFilter">
               <!-- Skills will be populated by JavaScript -->
-            </div>
-            <div class="filter-results" id="filterResults">
-              Showing all 5 projects
             </div>
           </div>
 
           <div class="projects-list" id="projectsList">
             
-            <div class="project-item" data-skills="Python,Pytorch,CLIP,Streamlit,Information Retrieval">
+            <div class="project-item" data-skills="Python,PyTorch,CLIP,Streamlit,Information Retrieval">
               <img src="assets/clip.png" alt="CLIP project thumbnail" class="project-thumbnail" />
               <div class="project-content">
                 <div class="project-header">
@@ -593,6 +569,32 @@
                   <a href="https://huggingface.co/spaces/rashad-m/clip-art-search" target="_blank">Launch App ↗</a>
                   <a href="https://huggingface.co/spaces/rashad-m/clip-art-search/blob/main/README.md" target="_blank" aria-label="Hugging Face">
                     🤗 Hugging Face
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-item" data-skills="Deep Learning,PyTorch,Computer Vision,CNN">
+              <img src="assets/cifar10.png" alt="CIFAR-10 Image Classification project thumbnail" class="project-thumbnail" />
+              <div class="project-content">
+                <div class="project-header">
+                  <h3>CIFAR-10 Image Classification</h3>
+                  <span class="project-date">Apr 11, 2025</span>
+                </div>
+                <p class="project-description">
+                  Custom neural network architecture for CIFAR-10 image classification achieving 86%+ test accuracy. Implemented advanced techniques including batch normalisation, dropout, data augmentation, and architectural innovations with parallel convolutional paths and dynamic feature weighting.
+                </p>
+                <div class="project-tags">
+                  <span>Deep Learning</span>
+                  <span>PyTorch</span>
+                  <span>Computer Vision</span>
+                  <span>CNN</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://rashad-malik.github.io/CIFAR-10-Image-Classification/html_export/CIFAR10_image_classification.html" target="_blank">View Project ↗</a>
+                  <a href="https://github.com/rashad-malik/CIFAR-10-Image-Classification" target="_blank" aria-label="GitHub repo">
+                    <svg class="gh-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.29 3.438 9.78 8.205 11.387.6.113.793-.262.793-.583 0-.288-.01-1.05-.015-2.06-3.338.726-4.042-1.61-4.042-1.61-.546-1.386-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.304.762-1.604-2.665-.304-5.467-1.332-5.467-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.49 11.49 0 0 1 3.003-.404c1.02.005 2.047.138 3.004.404 2.29-1.552 3.296-1.23 3.296-1.23.655 1.653.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.624-5.48 5.922.43.37.823 1.102.823 2.222 0 1.604-.015 2.896-.015 3.286 0 .324.192.699.8.58C20.565 22.276 24 17.789 24 12.5 24 5.87 18.627.5 12 .5z"/></svg>
+                    GitHub
                   </a>
                 </div>
               </div>
@@ -625,7 +627,7 @@
               </div>
             </div>
 
-            <div class="project-item" data-skills="Python,Pandas,Numpy,Chi Squared,Permutation Tests">
+            <div class="project-item" data-skills="Python,Pandas,Numpy,Permutation Tests">
               <img src="assets/flat_prices.png" alt="Flat Prices project thumbnail" class="project-thumbnail" />
               <div class="project-content">
                 <div class="project-header">
@@ -734,7 +736,6 @@
         const projectItems = document.querySelectorAll('.project-item');
         const skillsFilterContainer = document.getElementById('skillsFilter');
         const clearFiltersBtn = document.getElementById('clearFilters');
-        const filterResults = document.getElementById('filterResults');
         
         // Extract all unique skills from projects
         const allSkills = new Set();
@@ -786,15 +787,10 @@
 
         // Filter projects based on active filters
         function filterProjects() {
-          let visibleCount = 0;
-          
           if (activeFilters.size === 0) {
             // Show all projects
-            projectItems.forEach(item => {
-              item.style.display = '';
-              visibleCount++;
-            });
-            clearFiltersBtn.disabled = true;
+            projectItems.forEach(item => item.style.display = '');
+            clearFiltersBtn.classList.remove('visible');
           } else {
             // Filter projects
             projectItems.forEach(item => {
@@ -805,29 +801,11 @@
                 projectSkills.includes(filter)
               );
               
-              if (hasAllSkills) {
-                item.style.display = '';
-                visibleCount++;
-              } else {
-                item.style.display = 'none';
-              }
+              item.style.display = hasAllSkills ? '' : 'none';
             });
-            clearFiltersBtn.disabled = false;
-          }
-          
-          // Update results message
-          const totalProjects = projectItems.length;
-          if (visibleCount === totalProjects) {
-            filterResults.textContent = `Showing all ${totalProjects} projects`;
-          } else if (visibleCount === 0) {
-            filterResults.textContent = 'No projects match the selected filters';
-          } else {
-            filterResults.textContent = `Showing ${visibleCount} of ${totalProjects} projects`;
+            clearFiltersBtn.classList.add('visible');
           }
         }
-        
-        // Initialize filter results
-        filterProjects();
       });
     </script>
   </body>

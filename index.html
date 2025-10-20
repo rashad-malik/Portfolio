@@ -121,7 +121,7 @@
 
       /* ------------ Hero ------------ */
       header.hero {
-          padding: 180px 0 140px 0;
+          padding: 180px 0 80px 0;
           text-align: center;
       }
       .no-wrap {
@@ -213,6 +213,202 @@
           box-shadow: var(--shadow-md);
       }
 
+      /* ------------ Featured Projects Carousel ------------ */
+      .featured-section {
+        padding: 40px 0 60px 0;
+        position: relative;
+      }
+      .featured-background {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        padding: 2rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .featured-header {
+        text-align: center;
+        margin-bottom: 1.75rem;
+      }
+      .featured-header h2 {
+        font-size: clamp(1.3rem, 3vw, 1.75rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        margin-bottom: 0.35rem;
+      }
+      .featured-header p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+      .carousel-container {
+        position: relative;
+        max-width: 700px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .carousel-track {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+      .carousel-slide.active {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+      }
+      .project-card {
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(15, 118, 110, 0.2);
+      }
+      .project-card-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .project-card-content {
+        padding: 1.5rem;
+      }
+      .project-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+      }
+      .project-card-content h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        line-height: 1.3;
+      }
+      .project-card-date {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .project-card-description {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+      }
+      .project-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 0.875rem;
+      }
+      .project-card-tags span {
+        font-size: 0.7rem;
+        background: linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(15, 118, 110, 0.08) 100%);
+        color: var(--accent);
+        padding: 4px 10px;
+        border-radius: 5px;
+        font-weight: 600;
+        border: 1px solid rgba(15, 118, 110, 0.15);
+      }
+      .project-card-links {
+        display: flex;
+        gap: 0.875rem;
+      }
+      .project-card-links a {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent);
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      .project-card-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-light);
+        transition: width 0.3s ease;
+      }
+      .project-card-links a:hover {
+        color: var(--accent-light);
+      }
+      .project-card-links a:hover::after {
+        width: 100%;
+      }
+      .carousel-controls {
+        display: flex;
+        justify-content: center;
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+      }
+      .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--border-color);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+      }
+      .carousel-dot.active {
+        background: var(--accent);
+        width: 24px;
+        border-radius: 4px;
+      }
+      .carousel-dot:hover {
+        background: var(--accent-light);
+      }
+      .view-all-link {
+        text-align: center;
+        margin-top: 1.25rem;
+      }
+      .view-all-link a {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        position: relative;
+        display: inline-block;
+      }
+      .view-all-link a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-light);
+        transition: width 0.3s ease;
+      }
+      .view-all-link a:hover {
+        color: var(--accent-light);
+      }
+      .view-all-link a:hover::after {
+        width: 100%;
+      }
+
       /* ------------ Footer ------------ */
       footer {
         border-top: 1px solid var(--border-color);
@@ -266,10 +462,32 @@
       @media (max-width: 600px) {
         nav ul { gap: 1.5rem; }
         .nav-inner { height: 64px; }
-        header.hero { padding: 120px 0 80px 0; }
+        header.hero { padding: 120px 0 60px 0; }
         .hero-text { font-size: 2rem; line-height: 1.3; }
         .hero-buttons { margin-top: 1.5rem; gap: 0.75rem; }
         .btn { padding: 0.75rem 1.5rem; font-size: .9rem; }
+        .featured-section {
+          padding: 30px 0 50px 0;
+        }
+        .featured-background {
+          padding: 1.5rem;
+        }
+        .featured-header {
+          margin-bottom: 1.5rem;
+        }
+        .project-card-image {
+          height: 150px;
+        }
+        .project-card-content {
+          padding: 1.25rem;
+        }
+        .project-card-header {
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+        .project-card-date {
+          white-space: normal;
+        }
         .footer-grid { flex-direction: column; gap: 1.5rem; }
         .footer-right ul { display: flex; flex-wrap: wrap; justify-content: center; row-gap: 0.5rem; column-gap: 1rem; }
         footer { padding: 40px 0 30px 0; margin-top: 60px; }
@@ -299,6 +517,29 @@
         </div>
       </div>
     </header>
+
+    <!-- Featured Projects Carousel -->
+    <section class="featured-section">
+      <div class="container">
+        <div class="featured-background">
+          <div class="featured-header">
+            <h2>Featured Projects</h2>
+            <p>A showcase of my recent work</p>
+          </div>
+          <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- Slides will be populated by JavaScript -->
+            </div>
+          </div>
+          <div class="carousel-controls" id="carouselControls">
+            <!-- Dots will be populated by JavaScript -->
+          </div>
+          <div class="view-all-link">
+            <a href="projects.html">View All Projects →</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
       <div class="container footer-grid">
@@ -468,6 +709,141 @@
         resizeCanvas();
         init();
         animate();
+
+        // -- Featured Projects Carousel
+        const carouselTrack = document.getElementById('carouselTrack');
+        const carouselControls = document.getElementById('carouselControls');
+        
+        // Define all projects (matching projects.html)
+        const allProjects = [
+          {
+            title: "Art Discovery with CLIP",
+            date: "Apr 15, 2025",
+            description: "A search engine that utilises CLIP's zero-shot capabilities to retrieve artworks from the WikiArt dataset, bridging the gap between text and images.",
+            tags: ["Python", "PyTorch", "CLIP", "Streamlit"],
+            image: "assets/clip.png",
+            links: [
+              { text: "Launch App ↗", url: "https://huggingface.co/spaces/rashad-m/clip-art-search" },
+              { text: "🤗 Hugging Face", url: "https://huggingface.co/spaces/rashad-m/clip-art-search/blob/main/README.md" }
+            ]
+          },
+          {
+            title: "CIFAR-10 Image Classification",
+            date: "Apr 11, 2025",
+            description: "Custom neural network architecture for CIFAR-10 image classification achieving 86%+ test accuracy. Implemented advanced techniques including batch normalisation, dropout, and data augmentation.",
+            tags: ["Deep Learning", "PyTorch", "Computer Vision", "CNN"],
+            image: "assets/cifar10.png",
+            links: [
+              { text: "View Project ↗", url: "https://rashad-malik.github.io/CIFAR-10-Image-Classification/html_export/CIFAR10_image_classification.html" },
+              { text: "GitHub", url: "https://github.com/rashad-malik/CIFAR-10-Image-Classification" }
+            ]
+          },
+          {
+            title: "Who's Fibbing: Audio Deception Detection",
+            date: "Dec 6, 2024",
+            description: "Developed a machine learning model to distinguish between true and deceptive narratives based on audio recordings of spoken stories.",
+            tags: ["Python", "Librosa", "Scikit-learn", "Machine Learning"],
+            image: "assets/Whos fibbing.png",
+            links: [
+              { text: "Read Notebook ↗", url: "https://rashad-malik.github.io/MLEnd-Mini-Project/Whos_fibbing.html" },
+              { text: "GitHub", url: "https://github.com/rashad-malik/MLEnd-Mini-Project" }
+            ]
+          },
+          {
+            title: "Analysis of Regional Property Price Trends",
+            date: "Nov 26, 2024",
+            description: "An analysis of property price changes across England, using statistical tests to assess the independence of trends from regional classifications.",
+            tags: ["Python", "Pandas", "Chi Squared", "Statistics"],
+            image: "assets/flat_prices.png",
+            links: [
+              { text: "Read Notebook ↗", url: "https://rashad-malik.github.io/Python-Stats-Projects/html_exports/Analysis_of_Regional_Property_Price_Trends.html" },
+              { text: "GitHub", url: "https://github.com/rashad-malik/Python-Stats-Projects" }
+            ]
+          },
+          {
+            title: "Predicting Bridge Health in Texas",
+            date: "Nov 1, 2024",
+            description: "Utilised regression modelling to predict bridge condition scores, helping identify key factors like age and traffic to support maintenance planning.",
+            tags: ["Python", "Pandas", "Regression"],
+            image: "assets/bridges.png",
+            links: [
+              { text: "Read Notebook ↗", url: "https://rashad-malik.github.io/Python-Stats-Projects/html_exports/Statistical_Analysis_of_Texas_Bridges_Using_Regression_Modelling.html" },
+              { text: "GitHub", url: "https://github.com/rashad-malik/Python-Stats-Projects" }
+            ]
+          },
+          {
+            title: "Demographic Analysis of UK Population",
+            date: "Oct 9, 2024",
+            description: "Exploratory analysis of national demographic data from the 2021 UK Census, focusing on population distribution across different age groups.",
+            tags: ["Python", "Pandas", "GeoPandas"],
+            image: "assets/lsoa analysis.png",
+            links: [
+              { text: "Read Notebook ↗", url: "https://rashad-malik.github.io/Python-Stats-Projects/html_exports/Demographic_Analysis_of_UK_Population_Using_2021_Census_Data.html" },
+              { text: "GitHub", url: "https://github.com/rashad-malik/Python-Stats-Projects" }
+            ]
+          }
+        ];
+
+        // Randomly select 3 projects
+        const shuffled = allProjects.sort(() => 0.5 - Math.random());
+        const featuredProjects = shuffled.slice(0, 3);
+
+        // Create carousel slides
+        featuredProjects.forEach((project, index) => {
+          const slide = document.createElement('div');
+          slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+          
+          const tagsHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
+          const linksHTML = project.links.map(link => 
+            `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.text}</a>`
+          ).join('');
+
+          slide.innerHTML = `
+            <div class="project-card">
+              <img src="${project.image}" alt="${project.title}" class="project-card-image" />
+              <div class="project-card-content">
+                <div class="project-card-header">
+                  <h3>${project.title}</h3>
+                  <span class="project-card-date">${project.date}</span>
+                </div>
+                <p class="project-card-description">${project.description}</p>
+                <div class="project-card-tags">${tagsHTML}</div>
+                <div class="project-card-links">${linksHTML}</div>
+              </div>
+            </div>
+          `;
+          carouselTrack.appendChild(slide);
+        });
+
+        // Create carousel dots
+        featuredProjects.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+          dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+          dot.addEventListener('click', () => goToSlide(index));
+          carouselControls.appendChild(dot);
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function goToSlide(index) {
+          slides[currentSlide].classList.remove('active');
+          dots[currentSlide].classList.remove('active');
+          
+          currentSlide = index;
+          
+          slides[currentSlide].classList.add('active');
+          dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+          goToSlide((currentSlide + 1) % slides.length);
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(nextSlide, 5000);
       });
     </script>
   </body>
