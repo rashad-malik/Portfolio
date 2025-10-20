@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Vanta.js dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
     <style>
       /* ------------ CSS RESET ------------ */
@@ -28,7 +32,7 @@
       a { color: inherit; text-decoration: none; }
 
       /* Canvas for particle effect */
-      #particle-canvas {
+      #vanta-bg {
         position: fixed;
         top: 0;
         left: 0;
@@ -495,7 +499,7 @@
     </style>
   </head>
   <body>
-    <canvas id="particle-canvas"></canvas>
+    <div id="vanta-bg"></div>
 
     <nav>
       <div class="container nav-inner">
@@ -582,133 +586,23 @@
         }
         type();
 
-        // -- Interactive Particle Constellation Script (Enhanced Visibility)
-        const canvas = document.getElementById('particle-canvas');
-        const footer = document.querySelector('footer');
-        const ctx = canvas.getContext('2d');
-
-        let particles = [];
-        const numParticles = window.innerWidth > 768 ? 100 : 45;
-        const connectRadius = 140;
-        const mouseConnectRadius = 180;
-
-        const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-        
-        const mouse = { x: null, y: null };
-
-        function updateCanvasClip() {
-            const footerTop = footer.getBoundingClientRect().top;
-            const bottomClip = Math.max(0, window.innerHeight - footerTop);
-            canvas.style.clipPath = `inset(0 0 ${bottomClip}px 0)`;
-        }
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            updateCanvasClip();
-        }
-        
-        window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('scroll', updateCanvasClip, { passive: true });
-        
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
+        // -- Vanta.js NET Effect
+        VANTA.NET({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x14b8a6,
+          backgroundColor: 0xfdfbf7,
+          points: 10,
+          maxDistance: 20,
+          spacing: 15,
+          showDots: true
         });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1.5;
-                this.speedX = (Math.random() * 0.6 - 0.3);
-                this.speedY = (Math.random() * 0.6 - 0.3);
-            }
-            update() {
-                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-                this.x += this.speedX;
-                this.y += this.speedY;
-            }
-            draw() {
-                // Draw particle with glow effect
-                ctx.shadowBlur = 8;
-                ctx.shadowColor = 'rgba(15, 118, 110, 0.6)';
-                ctx.fillStyle = 'rgba(15, 118, 110, 0.7)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < numParticles; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function connect() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a + 1; b < particles.length; b++) {
-                    const dx = particles[a].x - particles[b].x;
-                    const dy = particles[a].y - particles[b].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < connectRadius) {
-                        const opacity = (1 - distance / connectRadius) * 0.4;
-                        ctx.strokeStyle = `rgba(15, 118, 110, ${opacity})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-                if (mouse.x && mouse.y) {
-                    const dx = particles[a].x - mouse.x;
-                    const dy = particles[a].y - mouse.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouseConnectRadius) {
-                        const opacity = (1 - distance / mouseConnectRadius) * 0.7;
-                        ctx.strokeStyle = `rgba(15, 118, 110, ${opacity})`;
-                        ctx.lineWidth = 1.2;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.stroke();
-                        
-                        // Draw highlighted mouse cursor dot
-                        ctx.shadowBlur = 15;
-                        ctx.shadowColor = 'rgba(15, 118, 110, 0.8)';
-                        ctx.fillStyle = 'rgba(15, 118, 110, 0.6)';
-                        ctx.beginPath();
-                        ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.shadowBlur = 0;
-                    }
-                }
-            }
-        }
-        
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            connect();
-            requestAnimationFrame(animate);
-        }
-
-        resizeCanvas();
-        init();
-        animate();
 
         // -- Featured Projects Carousel
         const carouselTrack = document.getElementById('carouselTrack');
